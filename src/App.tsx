@@ -1,11 +1,53 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+import {HashRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import styled from 'styled-components';
 
- function App() {
+const Wrapper = styled.div`
+border:1px solid red;
+height: 100vh;
+display: flex;
+flex-direction: column;
+`;
+const Main = styled.div`
+flex:1;
+overflow: auto;
+`;
+const Nav = styled.div`
+border:1px solid green;
+  > ul {
+      display: flex;
+      
+    > li{
+        flex-grow: 1;
+        padding:16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+`
+function App() {
   return (
     <Router>
-      <div>
-        <nav>
+      <Wrapper>
+        <Main>
+          <Switch>
+            <Route path="/tags">
+              <Tags/>
+            </Route>
+            <Route path="/money">
+              <Money/>
+            </Route>
+            <Route path="/statistics">
+              <Statistics/>
+            </Route>
+            <Redirect exact from='/' to='/money'/>
+            <Route path="*">
+              <NoMatch/>
+            </Route>
+          </Switch>
+        </Main>
+        <Nav>
           <ul>
             <li>
               <Link to="/tags">标签</Link>
@@ -17,24 +59,8 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-rout
               <Link to="/statistics">统计</Link>
             </li>
           </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/tags">
-            <Tags />
-          </Route>
-          <Route path="/money">
-            <Money />
-          </Route>
-          <Route path="/statistics">
-            <Statistics />
-          </Route>
-          <Redirect exact from ='/' to='/money' />
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
+        </Nav>
+      </Wrapper>
     </Router>
   );
 }
@@ -50,6 +76,7 @@ function Tags() {
 function Money() {
   return <h2>记账页面</h2>;
 }
+
 function NoMatch() {
   return (
     <div>
@@ -57,4 +84,5 @@ function NoMatch() {
     </div>
   );
 }
+
 export default App;
