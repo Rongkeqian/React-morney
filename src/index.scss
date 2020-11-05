@@ -1,4 +1,5 @@
 @import-normalize ;
+@import "helper.scss";
 *{
   margin: 0;
   padding:0;
@@ -13,3 +14,8 @@ ul,ol{
   list-style: none;
 }
 a{text-decoration: none;color: initial}
+body{
+  font-family: $font-hei;
+  font-size: 16px;
+  line-height: 1.2;
+}
