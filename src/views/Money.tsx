@@ -6,62 +6,48 @@ import {NoteSection} from 'components/Money/NoteSection';
 import {CategorySection} from 'components/Money/CategorySection';
 import {NumberPadSection} from 'components/Money/NumberPadSection';
 
-const MyLayout =styled(Layout)`
+const MyLayout = styled(Layout)`
 display: flex;
 flex-direction: column;
-`
+`;
 
 type Category = '-' | '+'
 
 function Money() {
-  const [selected,setSelected] =useState({
-    tags:[] as string[],
-    note:'',
-    category:'-' as Category,
-    amount:0
-  })
-  return(
+  const [selected, setSelected] = useState({
+    tags: [] as string[],
+    note: '',
+    category: '-' as Category,
+    amount: 0
+  });
+  //type Selected = typeof selected; //获取值（selected）的类型
+  const onChange = (obj: Partial<typeof selected>) => {  //partial部分类型
+    setSelected({
+      ...selected,
+      ...obj
+    });
+  };
+  return (
     <MyLayout>
-      {/*{selected.tags.join(',')}*/}
-      {/*<hr />*/}
-      {/*{selected.note}*/}
-      {/*<hr />*/}
-      {/*{selected.category}*/}
-      {/*<hr />*/}
-      {/*{selected.amount}*/}
-       <TagsSection value={selected.tags}
-                    onChange={(tags)=>setSelected(
-                      {
-                        ...selected,
-                        tags:tags
-                      }
-                    )} />
-      <NoteSection value = {selected.note}
-                  onChange={(note)=>{
-                    setSelected({
-                      ...selected,
-                      note:note
-                    })
-                  }}
-      />
-      <CategorySection value ={selected.category}
-                        onChange={(category)=>{
-                          setSelected({
-                            ...selected,
-                            category: category
-                          })
-                        }}
-      />
+      {selected.tags.join(',')}
+      <hr/>
+      {selected.note}
+      <hr/>
+      {selected.category}
+      <hr/>
+      {selected.amount}
+      <TagsSection value={selected.tags}
+                   onChange={(tags) => onChange({tags})}/>
+      <NoteSection value={selected.note}
+                   onChange={(note) => onChange({note})}/>
+      <CategorySection value={selected.category}
+                       onChange={(category) => onChange({category})}/>
       <NumberPadSection value={selected.amount}
-                        onChange={(amount)=>{
-                          setSelected({
-                            ...selected,
-                            amount:amount
-                          })
-                        }}
-                        onOk={()=>{}}
+                        onChange={(amount) => onChange({amount})}
+                        onOk={() => {}}
       />
     </MyLayout>
   );
 }
-export default Money
+
+export default Money;
