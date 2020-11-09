@@ -26,11 +26,13 @@ const Wrapper = styled.section`
   }
   >button{
     border:none;
-    border-bottom:1px solid #333;
+    border-bottom:1px solid #666;
+    background: none;
     font-family: inherit;
     padding:2px 4px;
     color:#666;
     margin-top:16px;
+    margin-bottom:16px;
   }
 `;
 
