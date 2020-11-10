@@ -50,14 +50,14 @@ height: 16px;
 `;
 
 function Tags() {
-  const {tags, setTags} = useTags();
+  const {tags} = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(t =>
-          <li key={t}>
+          <li key={t.id}>
             <Link to={'/tags/' + t}>
-              <span>{t}</span>
+              <span>{t.name}</span>
               <Icon name='right'/>
             </Link>
           </li>
