@@ -11,8 +11,8 @@ box-shadow: 0 0 3px rgba(0,0,0,0.25);
         width:33.3333%;
         text-align: center;
         .icon{
-        width:24px;
-        height: 24px;
+        width:18px;
+        height: 18px;
         fill:#18a0fb
         }
         > a{
@@ -49,7 +49,6 @@ const Nav = () => {
           </NavLink>
         </li>
         <li>
-
           <NavLink to="/statistics" activeClassName='selected'>
             <Icon name='statistics'/>
             统计
