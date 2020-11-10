@@ -43,7 +43,7 @@ const Nav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/money" activeClassName='selected'>
+          <NavLink to="/money"  activeClassName='selected'>
             <Icon name='money'/>
             记一笔
           </NavLink>

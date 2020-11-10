@@ -1,9 +1,10 @@
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
 import React from 'react';
 import {useTags} from 'useTags';
 import styled from 'styled-components';
-import Icon from '../components/Icom';
+import Icon from 'components/Icom';
 import {Link} from 'react-router-dom';
+import {Button} from 'components/Button';
 
 
 const TagList = styled.ol`
@@ -29,16 +30,6 @@ const TagList = styled.ol`
       }
   }
 `;
-
-const Button = styled.button`
-  font-size: 18px;
-  border:none;
-  padding:8px 12px;
-  background:#18a0fb;
-  border-radius: 4px;
-  color:#f5f5f5;
-`;
-
 const Center = styled.div`
 display: flex;
 justify-content: center;
