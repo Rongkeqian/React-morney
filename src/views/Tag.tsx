@@ -5,6 +5,9 @@ import Layout from 'components/Layout';
 import Icon from '../components/Icom';
 import {Button} from '../components/Button';
 import styled from 'styled-components';
+import {Input} from '../components/Input';
+import {Center} from '../components/Center';
+import {Space} from '../components/Space';
 
 
 const Topbar =styled.header`
@@ -22,6 +25,12 @@ const Topbar =styled.header`
 type Params={
   id:string
 }
+const InputWrapper = styled.div`
+  padding:0 16px;
+  background: #fff;
+  margin-top: 8px;
+`
+
 const Tag:React.FC=(props)=>{
   const {findTag} = useTags();
   let { id } =useParams<Params>()
@@ -33,16 +42,16 @@ return(
       <span>编辑标签</span>
       <Icon name='' />
     </Topbar>
-    <div>
-      <label>
-        <span>标签名</span>
-        <input type='text' placeholder={tag.name}
-        />
-      </label>
-    </div>
-    <div>
+    <InputWrapper>
+      <Input label='标签名' type='text' placeholder='标签名' value ={tag.name} />
+    </InputWrapper>
+    <Center>
+      <Space />
+      <Space />
+      <Space /><Space />
+
       <Button>删除标签</Button>
-    </div>
+    </Center>
 
   </Layout>
 )

@@ -11,9 +11,12 @@ align-items: center;
   > input{
     display: block;
     flex:1;
-    height: 72px;
+    font-size:16px;
+    color:#666;
+    height: 44px;
     border:none;
     background:none
+    
   }
 `
 type Props ={
@@ -25,10 +28,6 @@ const Input:React.FC<Props> =(props)=>{
     <Label>
       <span>{props.label}</span>
       <input { ...rest }
-             // type={props.type}
-             // placeholder={props.placeholder}
-             // defaultValue={props.defaultValue}
-             // onBlur={props.onBlur}
       />
     </Label>
   )
