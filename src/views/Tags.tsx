@@ -5,7 +5,11 @@ import {useTags} from 'useTags';
 function Tags() {
   const {tags,setTags} = useTags()
   return(
-    <Layout><h2>标签页面</h2></Layout>
+    <Layout>
+      <ol>
+        {tags.map(t => <li key={t}>{t}</li>)}
+      </ol>
+    </Layout>
   );
 }
 export default Tags;
