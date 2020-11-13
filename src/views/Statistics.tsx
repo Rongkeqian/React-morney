@@ -23,12 +23,15 @@ function Statistics() {
   const [category, setCategory] = useState<'+' | '-'>('-');
   const {records} = useRecords();
   const {getName} = useTags();
+  const selectedRecords = ()=>{
+    return records.filter(r => r.category ===category)
+  }
   return (
     <Layout>
       <CategorySection value={category}
                        onChange={value => setCategory(value)}/>
       <div>
-        {records.map(r => {
+        {selectedRecords().map(r => {
           return <Item>
             <div>
               {r.tagIds.map(tagId => <span>{getName(tagId)}</span>)}
