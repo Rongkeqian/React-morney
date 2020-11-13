@@ -11,18 +11,20 @@ const MyLayout = styled(Layout)`
 display: flex;
 flex-direction: column;
 `;
-
+const CategoryWrapper = styled.div`
+background: #c4c4c4;
+`
 type Category = '-' | '+'
 const defaultFormData = {
-    tagIds: [] as number[],
-      note: '',
-    category: '-' as Category,
-    amount: 0
-  }
+  tagIds: [] as number[],
+  note: '',
+  category: '-' as Category,
+  amount: 0
+};
 
 function Money() {
   const [selected, setSelected] = useState(defaultFormData);
-  const {records,addRecord} = useRecords();
+  const { addRecord} = useRecords();
 
   //type Selected = typeof selected; //获取值（selected）的类型
   const onChange = (obj: Partial<typeof selected>) => {  //partial部分类型
@@ -31,12 +33,13 @@ function Money() {
       ...obj
     });
   };
-  const submit =()=>{
-    if(addRecord(selected)){
-      alert('保存成功')
-      setSelected(defaultFormData)
+  const submit = () => {
+    if (addRecord(selected)) {
+      alert('保存成功');
+      setSelected(defaultFormData);
+
     }
-  }
+  };
   return (
     <MyLayout>
       {/*{selected.note}*/}
@@ -45,8 +48,10 @@ function Money() {
                    onChange={(tagIds) => onChange({tagIds})}/>
       <NoteSection value={selected.note}
                    onChange={(note) => onChange({note})}/>
-      <CategorySection value={selected.category}
-                       onChange={(category) => onChange({category})}/>
+      <CategoryWrapper>
+        <CategorySection value={selected.category}
+                         onChange={(category) => onChange({category})}/>
+      </CategoryWrapper>
       <NumberPadSection value={selected.amount}
                         onChange={(amount) => onChange({amount})}
                         onOk={submit}
