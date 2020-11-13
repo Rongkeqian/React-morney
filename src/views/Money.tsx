@@ -37,13 +37,15 @@ function Money() {
     if (addRecord(selected)) {
       alert('保存成功');
       setSelected(defaultFormData);
-
     }
   };
   return (
-    <MyLayout>
+    <MyLayout scrollTop={
+      document.documentElement.clientHeight
+    }>
       {/*{selected.note}*/}
       {/*{JSON.stringify(selected)}*/}
+
       <TagsSection value={selected.tagIds}
                    onChange={(tagIds) => onChange({tagIds})}/>
       <NoteSection value={selected.note}

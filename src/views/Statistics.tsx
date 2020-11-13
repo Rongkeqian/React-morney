@@ -32,12 +32,12 @@ function Statistics() {
   const {getName} = useTags();
   const hash:{ [K:string]: RecordItem[]} ={}
   const selectedRecords = records.filter(r => r.category ===category)
-  selectedRecords.map((r) => {
+  selectedRecords.forEach((r) => {
     const key = day(r.createAt).format('YYYY-MM-DD');
     if (!(key in hash)) {
       hash[key] = [];
     }
-   return hash[key].push(r);
+    hash[key].push(r);
   });
   const array= Object.entries(hash).sort((a,b)=>{
     if(a[0] === b[0]) return 0;
@@ -45,7 +45,6 @@ function Statistics() {
     if (a[0] > b[0]) return -1;
     return 0
   })
-  console.log(array);
 
   return (
     <Layout>
@@ -53,11 +52,11 @@ function Statistics() {
                        onChange={value => setCategory(value)}/>
       {array.map(([date,records]) =>
         <div>
-          <Header>{date}</Header>
+          <Header >{date}</Header>
           <div>
             {records.map(r => {
               return <Item key={r.createAt}>
-                <div>
+                <div className='tags online' >
                   {r.tagIds
                     .map(tagId => <span key={tagId}>{getName(tagId)}</span>)
                     .reduce((result, span, index, array) =>
@@ -65,12 +64,11 @@ function Statistics() {
                   }
                 </div>
                 {r.note && <div className='note'>{r.note}</div>}
-                <div>￥{r.amount}</div>
+                <div className='amount' >￥{r.amount}</div>
               </Item>;
             })}
           </div>
         </div>
-
       )}
 
     </Layout>
